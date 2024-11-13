@@ -26,7 +26,7 @@ public class Main {
     public static void main(String[] args) {
         /* This builds the embeds data */
         EmbedBuilder builder = new EmbedBuilder.Construct()
-                .setUrl("https://discord.com/api/webhooks/1301990321328099378/1KKQJhvLE6PUa0qJVdELiv-FpuJA3fH4wiqmn3dxzK4JTi5T8JuIxmufBGn8w40NSKfI")
+                .setUrl("EMBED_URL")
                 .setTitle("This is a test embed title!")
                 .setDescription("This is a test embed description!")
                 .setColor(12370112)

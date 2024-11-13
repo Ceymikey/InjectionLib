@@ -17,7 +17,7 @@ import dev.ceymikey.injection.EmbedBuilder;
 import dev.ceymikey.injection.DiscordPayload;
 
 public class TestClass {
-    public static void testMethod(String[] args) {
+    public void testMethod() {
         /* This builds the embeds data */
         EmbedBuilder builder = new EmbedBuilder.Construct()
                 .setUrl("EMBED_URL")
