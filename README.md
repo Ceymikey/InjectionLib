@@ -11,7 +11,7 @@ dependencies {
 
 ### Basic usage
 ```java
-package dev.ceymikey;
+package com.example.test;
 
 import dev.ceymikey.injection.EmbedBuilder;
 import dev.ceymikey.injection.DiscordPayload;
