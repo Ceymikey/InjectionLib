@@ -33,6 +33,7 @@ public class EmbedBuilder {
         private int color;
         private List<Field> fields = new ArrayList<>();
         private String thumbnailUrl;
+        private String footerText;
 
         public Construct setThumbnailUrl(String thumbnailUrl) {
             this.thumbnailUrl = thumbnailUrl;
@@ -64,6 +65,11 @@ public class EmbedBuilder {
             return this;
         }
 
+        public Construct setFooter(String footerText) {
+            this.footerText = footerText;
+            return this;
+        }
+
         public EmbedBuilder build() {
             return new EmbedBuilder(this);
         }
@@ -75,6 +81,7 @@ public class EmbedBuilder {
     @Getter private final int color;
     @Getter private final List<Field> fields;
     @Getter private final String thumbnailUrl;
+    @Getter private final String footerText;
 
     private EmbedBuilder(Construct construct) {
         this.url = construct.url;
@@ -83,6 +90,7 @@ public class EmbedBuilder {
         this.color = construct.color;
         this.fields = construct.fields;
         this.thumbnailUrl = construct.thumbnailUrl;
+        this.footerText = construct.footerText;
     }
 
     public static class Field {

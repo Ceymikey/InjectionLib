@@ -66,6 +66,13 @@ public class DiscordPayload {
             }
             embed.put("fields", fieldsArray);
 
+            // Add footer if available
+            if (builder.getFooterText() != null && !builder.getFooterText().isEmpty()) {
+                JSONObject footer = new JSONObject();
+                footer.put("text", builder.getFooterText());
+                embed.put("footer", footer);
+            }
+
             JSONObject payload = new JSONObject();
             payload.put("embeds", new JSONArray().put(embed));
 
