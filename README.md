@@ -50,7 +50,7 @@ public class TestClass {
         /* Use the EmbedBuilder class to build a new embed */
         /* with the correct properties */
         EmbedBuilder builder = new EmbedBuilder.Construct()
-                .setUrl("EMBED_URL")
+                .setUrl("WEBHOOK_URL")
                 .setTitle("This is a test embed title!")
                 .setDescription("This is a test embed description!")
                 .setColor(12370112) // Gray color (RGB)
