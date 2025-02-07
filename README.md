@@ -6,7 +6,7 @@
 # Discord webhooks java
 
 ### Implementing
-How to add the library to your code. Its available for both maven and gradle
+How to add the library to your project. Its available for both maven and gradle
 #### Gradle implementation
 ```gradle
 repositories {
@@ -47,12 +47,14 @@ import dev.ceymikey.injection.DiscordPayload;
 
 public class TestClass {
     public void testMethod() {
-        /* This builds the embeds data */
+        /* Use the EmbedBuilder class to build a new embed */
+        /* with the correct properties */
         EmbedBuilder builder = new EmbedBuilder.Construct()
                 .setUrl("EMBED_URL")
                 .setTitle("This is a test embed title!")
                 .setDescription("This is a test embed description!")
-                .setColor(12370112) // Gray color
+                .setColor(12370112) // Gray color (RGB)
+                .setFooter("Small text at the bottom of the embed")
                 .build();
         /* This sends the actual embed */
         /* This gives you the freedom to build the embed early */
@@ -61,3 +63,7 @@ public class TestClass {
     }
 }
 ```
+### Result
+This will be the result of our code after calling the `testMethod` with 
+the correct webhook url.
+<img align="left" src="https://github.com/user-attachments/assets/2967b077-35b5-4c50-805e-3647364d0aee">
