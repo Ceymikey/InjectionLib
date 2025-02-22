@@ -17,7 +17,7 @@ publishing {
         maven(MavenPublication) {
             groupId = "dev.ceymikey"
             artifactId = "injectionlib"
-            version = "1.0.1"
+            version = "1.0.2"
             from components.java
         }
     }
