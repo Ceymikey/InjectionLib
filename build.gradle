@@ -22,7 +22,7 @@ dependencies {
     compileOnly 'org.jetbrains:annotations:26.0.2'
     compileOnly 'org.projectlombok:lombok:1.18.36'
 
-    implementation 'com.konghq:unirest-java:3.14.5'
+    implementation 'org.apache.httpcomponents:httpclient:4.5.14'
 
     annotationProcessor 'org.jetbrains:annotations:26.0.2'
     annotationProcessor 'org.projectlombok:lombok:1.18.36'
@@ -30,6 +30,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.11.4'
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.11.4'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.11.4'
+
     testImplementation 'org.mockito:mockito-core:3.12.4'
     testImplementation 'org.mockito:mockito-junit-jupiter:3.12.4'
     testImplementation 'org.mockito:mockito-inline:3.12.4'
