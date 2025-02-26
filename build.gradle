@@ -1,43 +1,38 @@
 plugins {
     id 'java'
     id 'com.gradleup.shadow' version '8.3.6'
+    id 'maven-publish'
 }
 
 group = 'dev.ceymikey'
-version = '1.0-SNAPSHOT'
+version = '1.0.1'
 
-allprojects {
-    apply plugin: 'java'
-    apply plugin: 'com.gradleup.shadow'
-
-    java {
-        toolchain {
-            languageVersion = JavaLanguageVersion.of(8)
-        }
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(8)
     }
+}
 
-    repositories {
-        mavenCentral()
-        mavenLocal()
-    }
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
 
-    dependencies {
-        compileOnly 'org.jetbrains:annotations:26.0.1'
-        compileOnly 'org.projectlombok:lombok:1.18.36'
+dependencies {
+    compileOnly 'org.jetbrains:annotations:26.0.1'
+    compileOnly 'org.projectlombok:lombok:1.18.36'
 
-        implementation 'com.konghq:unirest-java:3.14.5'
+    implementation 'com.konghq:unirest-java:3.14.5'
 
-        annotationProcessor 'org.jetbrains:annotations:26.0.1'
-        annotationProcessor 'org.projectlombok:lombok:1.18.36'
+    annotationProcessor 'org.jetbrains:annotations:26.0.1'
+    annotationProcessor 'org.projectlombok:lombok:1.18.36'
 
-        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.11.4'
-        testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.11.4'
-        testImplementation 'org.junit.jupiter:junit-jupiter:5.11.4'
-        // Using Mockito 3.x which is compatible with Java 8
-        testImplementation 'org.mockito:mockito-core:3.12.4'
-        testImplementation 'org.mockito:mockito-junit-jupiter:3.12.4'
-        testImplementation 'org.mockito:mockito-inline:3.12.4'
-    }
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.11.4'
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.11.4'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.4'
+    testImplementation 'org.mockito:mockito-core:3.12.4'
+    testImplementation 'org.mockito:mockito-junit-jupiter:3.12.4'
+    testImplementation 'org.mockito:mockito-inline:3.12.4'
 }
 
 // Configure test task
@@ -83,4 +78,26 @@ tasks.register('integrationTest', Test) {
 // Add integration tests to check task dependencies if requested
 if (project.hasProperty('runIntegrationTests')) {
     check.dependsOn integrationTest
+}
+
+// Publishing configuration
+publishing {
+    repositories {
+        maven {
+            name = "InjectionLib"
+            url = "https://repo.ceymikey.dev/releases"
+            credentials(PasswordCredentials)
+            authentication {
+                basic(BasicAuthentication)
+            }
+        }
+    }
+    publications {
+        maven(MavenPublication) {
+            groupId = "dev.ceymikey"
+            artifactId = "injectionlib"
+            version = project.version
+            from components.java
+        }
+    }
 }
