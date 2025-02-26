@@ -17,16 +17,17 @@ package dev.ceymikey.injection;
 
 import dev.ceymikey.exceptions.FailedEndpointException;
 import dev.ceymikey.exceptions.InjectionFailureException;
+import dev.ceymikey.json.JsonArray;
+import dev.ceymikey.json.JsonBuilder;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import org.jetbrains.annotations.NotNull;
 
 public class DiscordPayload {
 
-    public static void inject(EmbedBuilder builder) {
+    public static void inject(@NotNull EmbedBuilder builder) {
         if (builder.getUrl() == null || builder.getUrl().isEmpty()) {
             try {
                 throw new FailedEndpointException();
@@ -46,20 +47,20 @@ public class DiscordPayload {
         }
 
         try {
-            JSONObject embed = new JSONObject();
+            JsonBuilder embed = new JsonBuilder();
             embed.put("title", builder.getTitle());
             embed.put("description", builder.getDescription());
             embed.put("color", builder.getColor());
 
             if (builder.getThumbnailUrl() != null && !builder.getThumbnailUrl().isEmpty()) {
-                JSONObject thumbnail = new JSONObject();
+                JsonBuilder thumbnail = new JsonBuilder();
                 thumbnail.put("url", builder.getThumbnailUrl());
                 embed.put("thumbnail", thumbnail);
             }
 
-            JSONArray fieldsArray = new JSONArray();
+            JsonArray fieldsArray = new JsonArray();
             for (EmbedBuilder.Field field : builder.getFields()) {
-                JSONObject fieldObject = new JSONObject();
+                JsonBuilder fieldObject = new JsonBuilder();
                 fieldObject.put("name", field.name);
                 fieldObject.put("value", field.value);
                 fieldsArray.put(fieldObject);
@@ -68,13 +69,15 @@ public class DiscordPayload {
 
             // Add footer if available
             if (builder.getFooterText() != null && !builder.getFooterText().isEmpty()) {
-                JSONObject footer = new JSONObject();
+                JsonBuilder footer = new JsonBuilder();
                 footer.put("text", builder.getFooterText());
                 embed.put("footer", footer);
             }
 
-            JSONObject payload = new JSONObject();
-            payload.put("embeds", new JSONArray().put(embed));
+            JsonBuilder payload = new JsonBuilder();
+            JsonArray embedsArray = new JsonArray();
+            embedsArray.put(embed);
+            payload.put("embeds", embedsArray);
 
             CloseableHttpClient httpClient = HttpClients.createDefault();
             HttpPost httpPost = new HttpPost(builder.getUrl());

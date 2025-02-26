@@ -15,7 +15,9 @@
  */
 package dev.ceymikey.injection;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.jetbrains.annotations.Contract;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,14 +26,23 @@ import java.util.List;
  * This class is used to build the embed.
  * @author Ceymikey
  */
+@Getter
 public class EmbedBuilder {
+
+    private final String url;
+    private final String title;
+    private final String description;
+    private final int color;
+    private final List<Field> fields;
+    private final String thumbnailUrl;
+    private final String footerText;
 
     public static class Construct {
         private String url;
         private String title;
         private String description;
         private int color;
-        private List<Field> fields = new ArrayList<>();
+        private final List<Field> fields = new ArrayList<>();
         private String thumbnailUrl;
         private String footerText;
 
@@ -75,14 +86,7 @@ public class EmbedBuilder {
         }
     }
 
-    @Getter private final String url;
-    @Getter private final String title;
-    @Getter private final String description;
-    @Getter private final int color;
-    @Getter private final List<Field> fields;
-    @Getter private final String thumbnailUrl;
-    @Getter private final String footerText;
-
+    @Contract(pure = true)
     private EmbedBuilder(Construct construct) {
         this.url = construct.url;
         this.title = construct.title;
@@ -93,13 +97,9 @@ public class EmbedBuilder {
         this.footerText = construct.footerText;
     }
 
+    @AllArgsConstructor
     public static class Field {
         public String name;
         public String value;
-
-        public Field(String name, String value) {
-            this.name = name;
-            this.value = value;
-        }
     }
 }
