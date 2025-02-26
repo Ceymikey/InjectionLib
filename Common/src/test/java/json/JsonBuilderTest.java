@@ -16,6 +16,8 @@
 package json;
 
 import org.junit.jupiter.api.Test;
+import dev.ceymikey.json.JsonArray;
+import dev.ceymikey.json.JsonBuilder;
 import static org.junit.jupiter.api.Assertions.*;
 
 class JsonBuilderTest {
