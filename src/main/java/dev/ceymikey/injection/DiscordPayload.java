@@ -29,21 +29,13 @@ public class DiscordPayload {
 
     public static void inject(@NotNull EmbedBuilder builder) {
         if (builder.getUrl() == null || builder.getUrl().isEmpty()) {
-            try {
-                throw new FailedEndpointException();
-            } catch (FailedEndpointException e) {
-                throw new RuntimeException(e);
-            }
+            throw new FailedEndpointException();
         }
 
         if ((builder.getTitle() == null || builder.getTitle().isEmpty())
                 && (builder.getDescription() == null || builder.getDescription().isEmpty())
                 && (builder.getFields() == null || builder.getFields().isEmpty())) {
-            try {
-                throw new InjectionFailureException();
-            } catch (InjectionFailureException e) {
-                throw new RuntimeException(e);
-            }
+            throw new InjectionFailureException();
         }
 
         try {
