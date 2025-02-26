@@ -13,9 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package json;
+package dev.ceymikey.json;
 
-import dev.ceymikey.json.JsonElement;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
@@ -24,26 +23,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Tests for the JsonElement class, focusing on serializeValue functionality
- * for Maps, Lists, and other types not covered in JsonArray and JsonBuilder tests.
+ * for Maps, Lists, and other types not covered in JsonArray and JsonObject tests.
  *
  * @author svaningelgem
  */
 class JsonElementTest {
-
-    // Test helper class to expose protected methods for testing
-    private static class TestJsonElement extends JsonElement {
-        public String testSerializeValue(Object value) {
-            return serializeValue(value);
-        }
-
-        public String testSerializeObject(Map<String, Object> map) {
-            return serializeObject(map);
-        }
-
-        public String testSerializeArray(List<Object> list) {
-            return serializeArray(list);
-        }
-    }
 
     @Test
     void testSerializeMap() {
@@ -151,5 +135,20 @@ class JsonElementTest {
     // An enum for testing
     private enum TimeUnit {
         SECONDS, MINUTES, HOURS, DAYS
+    }
+
+    // Test helper class to expose protected methods for testing
+    private static class TestJsonElement extends JsonElement {
+        public String testSerializeValue(Object value) {
+            return serializeValue(value);
+        }
+
+        public String testSerializeObject(Map<String, Object> map) {
+            return serializeObject(map);
+        }
+
+        public String testSerializeArray(List<Object> list) {
+            return serializeArray(list);
+        }
     }
 }

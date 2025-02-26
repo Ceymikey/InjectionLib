@@ -1,6 +1,5 @@
 plugins {
     id 'java'
-    id 'com.gradleup.shadow' version '8.3.6'
     id 'maven-publish'
 }
 
@@ -21,8 +20,6 @@ repositories {
 dependencies {
     compileOnly 'org.jetbrains:annotations:26.0.2'
     compileOnly 'org.projectlombok:lombok:1.18.36'
-
-    implementation 'org.apache.httpcomponents:httpclient:4.5.14'
 
     annotationProcessor 'org.jetbrains:annotations:26.0.2'
     annotationProcessor 'org.projectlombok:lombok:1.18.36'

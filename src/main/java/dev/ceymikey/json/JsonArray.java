@@ -16,6 +16,7 @@
 package dev.ceymikey.json;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -24,10 +25,10 @@ import java.util.List;
  * @author svaningelgem
  */
 public class JsonArray extends JsonElement {
-    private final List<Object> items;
+    private final List<Object> items = new ArrayList<>();
 
-    public JsonArray() {
-        this.items = new ArrayList<>();
+    public JsonArray(Object... items) {
+        this.items.addAll(Arrays.asList(items));
     }
 
     public JsonArray put(Object value) {

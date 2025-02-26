@@ -51,7 +51,7 @@ public class JsonElement {
             return "\"" + escapeString((String) value) + "\"";
         } else if (value instanceof Number || value instanceof Boolean) {
             return value.toString();
-        } else if (value instanceof JsonBuilder) {
+        } else if (value instanceof JsonObject) {
             return value.toString();
         } else if (value instanceof JsonArray) {
             return value.toString();

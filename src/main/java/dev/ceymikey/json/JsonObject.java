@@ -23,14 +23,10 @@ import java.util.Map;
  *
  * @author svaningelgem
  */
-public class JsonBuilder extends JsonElement {
-    private final Map<String, Object> data;
+public class JsonObject extends JsonElement {
+    private final Map<String, Object> data = new LinkedHashMap<>();
 
-    public JsonBuilder() {
-        this.data = new LinkedHashMap<>();
-    }
-
-    public JsonBuilder put(String key, Object value) {
+    public JsonObject put(String key, Object value) {
         this.data.put(key, value);
         return this;
     }

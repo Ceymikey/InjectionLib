@@ -13,10 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package json;
+package dev.ceymikey.json;
 
-import dev.ceymikey.json.JsonArray;
-import dev.ceymikey.json.JsonBuilder;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -25,17 +23,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  * @author svaningelgem
  */
-class JsonBuilderTest {
+class JsonObjectTest {
 
     @Test
     void testEmptyObject() {
-        JsonBuilder builder = new JsonBuilder();
+        JsonObject builder = new JsonObject();
         assertEquals("{}", builder.toString());
     }
 
     @Test
     void testSimpleObject() {
-        JsonBuilder builder = new JsonBuilder()
+        JsonObject builder = new JsonObject()
                 .put("name", "Test")
                 .put("value", 42)
                 .put("active", true);
@@ -48,10 +46,10 @@ class JsonBuilderTest {
 
     @Test
     void testNestedObject() {
-        JsonBuilder nested = new JsonBuilder()
+        JsonObject nested = new JsonObject()
                 .put("key", "value");
 
-        JsonBuilder builder = new JsonBuilder()
+        JsonObject builder = new JsonObject()
                 .put("data", nested);
 
         assertEquals("{\"data\":{\"key\":\"value\"}}", builder.toString());
@@ -63,7 +61,7 @@ class JsonBuilderTest {
                 .put("item1")
                 .put("item2");
 
-        JsonBuilder builder = new JsonBuilder()
+        JsonObject builder = new JsonObject()
                 .put("items", array);
 
         assertEquals("{\"items\":[\"item1\",\"item2\"]}", builder.toString());
@@ -71,7 +69,7 @@ class JsonBuilderTest {
 
     @Test
     void testEscapeCharacters() {
-        JsonBuilder builder = new JsonBuilder()
+        JsonObject builder = new JsonObject()
                 .put("text", "Line 1\nLine 2\tTabbed\r\n\"Quoted\"");
 
         String json = builder.toString();
@@ -83,7 +81,7 @@ class JsonBuilderTest {
 
     @Test
     void testNullValue() {
-        JsonBuilder builder = new JsonBuilder()
+        JsonObject builder = new JsonObject()
                 .put("nullValue", null);
 
         assertEquals("{\"nullValue\":null}", builder.toString());

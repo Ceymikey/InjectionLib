@@ -18,14 +18,17 @@ package dev.ceymikey.injection;
 import dev.ceymikey.exceptions.FailedEndpointException;
 import dev.ceymikey.exceptions.InjectionFailureException;
 import dev.ceymikey.json.JsonArray;
-import dev.ceymikey.json.JsonBuilder;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
+import dev.ceymikey.json.JsonObject;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+
 public class DiscordPayload {
+    private DiscordPayload() {
+    }
 
     public static void inject(@NotNull EmbedBuilder builder) {
         if (builder.getUrl() == null || builder.getUrl().isEmpty()) {
@@ -38,49 +41,74 @@ public class DiscordPayload {
             throw new InjectionFailureException();
         }
 
+        HttpURLConnection connection = null;
+
         try {
-            JsonBuilder embed = new JsonBuilder();
-            embed.put("title", builder.getTitle());
-            embed.put("description", builder.getDescription());
-            embed.put("color", builder.getColor());
+            // Build the JSON payload
+            JsonObject payload = getPayload(builder);
 
-            if (builder.getThumbnailUrl() != null && !builder.getThumbnailUrl().isEmpty()) {
-                JsonBuilder thumbnail = new JsonBuilder();
-                thumbnail.put("url", builder.getThumbnailUrl());
-                embed.put("thumbnail", thumbnail);
+            // Set up HTTP connection
+            URL url = new URL(builder.getUrl());
+            connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setDoOutput(true);
+
+            // Send the payload
+            byte[] payloadBytes = payload.toString().getBytes(StandardCharsets.UTF_8);
+            connection.setFixedLengthStreamingMode(payloadBytes.length);
+
+            try (OutputStream os = connection.getOutputStream()) {
+                os.write(payloadBytes);
+                os.flush();
             }
 
-            JsonArray fieldsArray = new JsonArray();
-            for (EmbedBuilder.Field field : builder.getFields()) {
-                JsonBuilder fieldObject = new JsonBuilder();
-                fieldObject.put("name", field.name);
-                fieldObject.put("value", field.value);
-                fieldsArray.put(fieldObject);
-            }
-            embed.put("fields", fieldsArray);
-
-            // Add footer if available
-            if (builder.getFooterText() != null && !builder.getFooterText().isEmpty()) {
-                JsonBuilder footer = new JsonBuilder();
-                footer.put("text", builder.getFooterText());
-                embed.put("footer", footer);
+            // Get response code to ensure the request is complete
+            int responseCode = connection.getResponseCode();
+            if (responseCode < 200 || responseCode >= 300) {
+                System.out.println("HTTP Error: " + responseCode);
             }
 
-            JsonBuilder payload = new JsonBuilder();
-            JsonArray embedsArray = new JsonArray();
-            embedsArray.put(embed);
-            payload.put("embeds", embedsArray);
-
-            CloseableHttpClient httpClient = HttpClients.createDefault();
-            HttpPost httpPost = new HttpPost(builder.getUrl());
-            httpPost.addHeader("content-type", "application/json");
-            httpPost.setEntity(new StringEntity(payload.toString()));
-
-            httpClient.execute(httpPost);
-            httpClient.close();
         } catch (Exception e) {
             System.out.println("INJECTION FAILURE! | " + e.getMessage());
             e.printStackTrace();
+        } finally {
+            if (connection != null) {
+                connection.disconnect();
+            }
         }
+    }
+
+    private static @NotNull JsonObject getPayload(@NotNull EmbedBuilder builder) {
+        JsonObject embed = new JsonObject();
+        embed.put("title", builder.getTitle());
+        embed.put("description", builder.getDescription());
+        embed.put("color", builder.getColor());
+
+        if (builder.getThumbnailUrl() != null && !builder.getThumbnailUrl().isEmpty()) {
+            JsonObject thumbnail = new JsonObject();
+            thumbnail.put("url", builder.getThumbnailUrl());
+            embed.put("thumbnail", thumbnail);
+        }
+
+        JsonArray fieldsArray = new JsonArray();
+        for (EmbedBuilder.Field field : builder.getFields()) {
+            JsonObject fieldObject = new JsonObject();
+            fieldObject.put("name", field.name);
+            fieldObject.put("value", field.value);
+            fieldsArray.put(fieldObject);
+        }
+        embed.put("fields", fieldsArray);
+
+        // Add footer if available
+        if (builder.getFooterText() != null && !builder.getFooterText().isEmpty()) {
+            JsonObject footer = new JsonObject();
+            footer.put("text", builder.getFooterText());
+            embed.put("footer", footer);
+        }
+
+        JsonObject payload = new JsonObject();
+        payload.put("embeds", new JsonArray(embed));
+        return payload;
     }
 }

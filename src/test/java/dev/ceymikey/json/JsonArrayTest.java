@@ -13,10 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package json;
+package dev.ceymikey.json;
 
-import dev.ceymikey.json.JsonArray;
-import dev.ceymikey.json.JsonBuilder;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -46,8 +44,8 @@ class JsonArrayTest {
 
     @Test
     void testNestedObjects() {
-        JsonBuilder obj1 = new JsonBuilder().put("id", 1);
-        JsonBuilder obj2 = new JsonBuilder().put("id", 2);
+        JsonObject obj1 = new JsonObject().put("id", 1);
+        JsonObject obj2 = new JsonObject().put("id", 2);
 
         JsonArray array = new JsonArray()
                 .put(obj1)
@@ -73,7 +71,7 @@ class JsonArrayTest {
         JsonArray array = new JsonArray()
                 .put("string")
                 .put(42)
-                .put(new JsonBuilder().put("key", "value"))
+                .put(new JsonObject().put("key", "value"))
                 .put(new JsonArray().put(1).put(2));
 
         String json = array.toString();
