@@ -34,10 +34,46 @@ allprojects {
         testImplementation 'org.junit.jupiter:junit-jupiter-api:5.11.4'
         testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.11.4'
         testImplementation 'org.junit.jupiter:junit-jupiter:5.11.4'
-
+        testImplementation 'org.mockito:mockito-core:5.12.0'
+        testImplementation 'org.mockito:mockito-junit-jupiter:5.12.0'
+        testImplementation 'org.mockito:mockito-inline:5.12.0'
     }
 }
 
+// Configure test task
 test {
-    useJUnitPlatform()
+    useJUnitPlatform {
+        // Exclude integration tests by default
+        excludeTags 'integration'
+    }
+
+    reports {
+        html.required = true
+    }
+
+    testLogging {
+        events 'passed', 'skipped', 'failed'
+    }
+}
+
+// Create a separate task for integration tests
+task integrationTest(type: Test) {
+    description = 'Runs integration tests.'
+    group = 'verification'
+
+    useJUnitPlatform {
+        includeTags 'integration'
+    }
+
+    testLogging {
+        events 'passed', 'skipped', 'failed'
+    }
+
+    // Only run this task if explicitly called
+    onlyIf { project.hasProperty('runIntegrationTests') }
+}
+
+// Add integration tests to check task dependencies if requested
+if (project.hasProperty('runIntegrationTests')) {
+    check.dependsOn integrationTest
 }
