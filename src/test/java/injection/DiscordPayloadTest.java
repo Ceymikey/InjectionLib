@@ -17,6 +17,8 @@ package injection;
 
 import dev.ceymikey.exceptions.FailedEndpointException;
 import dev.ceymikey.exceptions.InjectionFailureException;
+import dev.ceymikey.injection.DiscordPayload;
+import dev.ceymikey.injection.EmbedBuilder;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -27,13 +29,14 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import dev.ceymikey.injection.EmbedBuilder;
-import dev.ceymikey.injection.DiscordPayload;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
+/**
+ * @author svaningelgem
+ */
 @ExtendWith(MockitoExtension.class)
 class DiscordPayloadTest {
 
@@ -51,7 +54,7 @@ class DiscordPayloadTest {
             DiscordPayload.inject(builder);
         });
 
-        assertInstanceOf(FailedEndpointException.class, exception.getCause());
+        assertInstanceOf(FailedEndpointException.class, exception);
     }
 
     @Test
@@ -66,7 +69,7 @@ class DiscordPayloadTest {
             DiscordPayload.inject(builder);
         });
 
-        assertInstanceOf(InjectionFailureException.class, exception.getCause());
+        assertInstanceOf(InjectionFailureException.class, exception);
     }
 
     @Test

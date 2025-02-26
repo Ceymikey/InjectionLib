@@ -18,8 +18,13 @@ package json;
 import dev.ceymikey.json.JsonArray;
 import dev.ceymikey.json.JsonBuilder;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+/**
+ * @author svaningelgem
+ */
 class JsonArrayTest {
 
     @Test

@@ -23,7 +23,7 @@ import java.util.List;
  *
  * @author svaningelgem
  */
-public class JsonArray {
+public class JsonArray extends JsonElement {
     private final List<Object> items;
 
     public JsonArray() {
@@ -37,66 +37,6 @@ public class JsonArray {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("[");
-
-        boolean first = true;
-        for (Object item : items) {
-            if (!first) {
-                sb.append(",");
-            }
-            first = false;
-
-            sb.append(serializeValue(item));
-        }
-
-        sb.append("]");
-        return sb.toString();
-    }
-
-    private String serializeValue(Object value) {
-        if (value == null) {
-            return "null";
-        } else if (value instanceof String) {
-            return "\"" + escapeString((String) value) + "\"";
-        } else if (value instanceof Number || value instanceof Boolean) {
-            return value.toString();
-        } else if (value instanceof JsonBuilder) {
-            return value.toString();
-        } else if (value instanceof JsonArray) {
-            return value.toString();
-        } else if (value instanceof List) {
-            @SuppressWarnings("unchecked")
-            List<Object> list = (List<Object>) value;
-            return serializeArray(list);
-        } else {
-            return "\"" + escapeString(value.toString()) + "\"";
-        }
-    }
-
-    private String serializeArray(List<Object> list) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("[");
-
-        boolean first = true;
-        for (Object item : list) {
-            if (!first) {
-                sb.append(",");
-            }
-            first = false;
-
-            sb.append(serializeValue(item));
-        }
-
-        sb.append("]");
-        return sb.toString();
-    }
-
-    private String escapeString(String input) {
-        return input.replace("\\", "\\\\")
-                .replace("\"", "\\\"")
-                .replace("\n", "\\n")
-                .replace("\r", "\\r")
-                .replace("\t", "\\t");
+        return serializeArray(items);
     }
 }

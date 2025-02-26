@@ -24,6 +24,8 @@ import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable;
 /**
  * Integration tests for the Discord webhook functionality.
  * These tests will only run if the DISCORD_WEBHOOK_URL environment variable is set.
+ *
+ * @author svaningelgem
  */
 @Tag("integration")
 class DiscordPayloadIntegrationTest {

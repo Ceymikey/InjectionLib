@@ -24,6 +24,7 @@ import java.util.List;
 
 /**
  * This class is used to build the embed.
+ *
  * @author Ceymikey
  */
 @Getter
@@ -37,12 +38,23 @@ public class EmbedBuilder {
     private final String thumbnailUrl;
     private final String footerText;
 
+    @Contract(pure = true)
+    private EmbedBuilder(Construct construct) {
+        this.url = construct.url;
+        this.title = construct.title;
+        this.description = construct.description;
+        this.color = construct.color;
+        this.fields = construct.fields;
+        this.thumbnailUrl = construct.thumbnailUrl;
+        this.footerText = construct.footerText;
+    }
+
     public static class Construct {
+        private final List<Field> fields = new ArrayList<>();
         private String url;
         private String title;
         private String description;
         private int color;
-        private final List<Field> fields = new ArrayList<>();
         private String thumbnailUrl;
         private String footerText;
 
@@ -84,17 +96,6 @@ public class EmbedBuilder {
         public EmbedBuilder build() {
             return new EmbedBuilder(this);
         }
-    }
-
-    @Contract(pure = true)
-    private EmbedBuilder(Construct construct) {
-        this.url = construct.url;
-        this.title = construct.title;
-        this.description = construct.description;
-        this.color = construct.color;
-        this.fields = construct.fields;
-        this.thumbnailUrl = construct.thumbnailUrl;
-        this.footerText = construct.footerText;
     }
 
     @AllArgsConstructor
