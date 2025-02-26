@@ -51,7 +51,7 @@ class DiscordPayloadTest {
             DiscordPayload.inject(builder);
         });
 
-        assertTrue(exception.getCause() instanceof FailedEndpointException);
+        assertInstanceOf(FailedEndpointException.class, exception.getCause());
     }
 
     @Test
@@ -66,7 +66,7 @@ class DiscordPayloadTest {
             DiscordPayload.inject(builder);
         });
 
-        assertTrue(exception.getCause() instanceof InjectionFailureException);
+        assertInstanceOf(InjectionFailureException.class, exception.getCause());
     }
 
     @Test

@@ -37,25 +37,16 @@ dependencies {
 
 // Configure test task
 test {
-    useJUnitPlatform {
-        // Exclude integration tests by default
-        excludeTags 'integration'
-    }
-
-    // Make sure to include all potential test files
-    include '**/*Test.java'
-    include '**/*Tests.java'
-    include '**/Test*.java'
-
-    reports {
-        html.required = true
-    }
+    useJUnitPlatform()
 
     testLogging {
-        events 'passed', 'skipped', 'failed'
+        events "passed", "skipped", "failed", "standardOut", "standardError"
+        exceptionFormat = "full"
         showStandardStreams = true
-        exceptionFormat = 'full'
     }
+
+    // Force scan for all files
+    scanForTestClasses = true
 }
 
 // Create a separate task for integration tests
