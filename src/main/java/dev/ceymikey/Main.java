@@ -15,11 +15,12 @@
  */
 package dev.ceymikey;
 
-import dev.ceymikey.injection.EmbedBuilder;
 import dev.ceymikey.injection.DiscordPayload;
+import dev.ceymikey.injection.EmbedBuilder;
 
 /**
  * For now the main class just contains an example of the usage.
+ *
  * @author Ceymikey
  */
 public class Main {

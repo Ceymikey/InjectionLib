@@ -13,7 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.ceymikey.annotation;
+package dev.ceymikey.exceptions;
 
-public @interface Entry {
+public class FailedEndpointException extends RuntimeException {
+
+    public FailedEndpointException() {
+        super("An issue occurred while finding endpoint : the embed url was either left empty or was invalid!");
+    }
 }

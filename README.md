@@ -19,21 +19,24 @@ dependencies {
 ```
 #### Maven implementation
 ```xml
-<repositories>
-    <repository>
-        <id>ceymikey-releases</id>
-        <url>https://repo.ceymikey.dev/releases</url>
-    </repository>
-</repositories>
+<project>
+    
+    <repositories>
+        <repository>
+            <id>ceymikey-releases</id>
+            <url>https://repo.ceymikey.dev/releases</url>
+        </repository>
+    </repositories>
+    
+    <dependencies>
+        <dependency>
+            <groupId>dev.ceymikey</groupId>
+            <artifactId>injectionlib</artifactId>
+            <version>{VERSION}</version>
+        </dependency>
+    </dependencies>
 
-<dependencies>
-    <dependency>
-        <groupId>dev.ceymikey</groupId>
-        <artifactId>injectionlib</artifactId>
-        <version>{VERSION}</version>
-    </dependency>
-</dependencies>
-
+</project>
 ```
 
 ### Basic usage

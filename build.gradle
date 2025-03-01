@@ -1,43 +1,92 @@
 plugins {
     id 'java'
-    id 'com.github.johnrengelman.shadow' version '8.1.1'
+    id 'maven-publish'
 }
 
 group = 'dev.ceymikey'
-version = '1.0-SNAPSHOT'
+version = '1.0.1'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(8)
+    }
+}
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
-allprojects {
-    apply plugin: 'java'
-    apply plugin: 'com.github.johnrengelman.shadow'
+dependencies {
+    compileOnly 'org.jetbrains:annotations:26.0.2'
+    compileOnly 'org.projectlombok:lombok:1.18.36'
 
-    sourceCompatibility = 21
-    targetCompatibility = 21
+    annotationProcessor 'org.jetbrains:annotations:26.0.2'
+    annotationProcessor 'org.projectlombok:lombok:1.18.36'
 
-    repositories {
-        mavenCentral()
-        mavenLocal()
-    }
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.11.4'
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.11.4'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.4'
 
-    dependencies {
-        compileOnly 'org.jetbrains:annotations:26.0.1'
-        compileOnly 'org.projectlombok:lombok:1.18.36'
-
-        implementation 'com.konghq:unirest-java:3.14.5'
-
-        annotationProcessor 'org.jetbrains:annotations:26.0.1'
-        annotationProcessor 'org.projectlombok:lombok:1.18.36'
-
-        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.11.4'
-        testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.11.4'
-        testImplementation 'org.junit.jupiter:junit-jupiter:5.11.4'
-
-    }
+    testImplementation 'org.mockito:mockito-core:3.12.4'
+    testImplementation 'org.mockito:mockito-junit-jupiter:3.12.4'
+    testImplementation 'org.mockito:mockito-inline:3.12.4'
 }
 
+// Configure test task
 test {
     useJUnitPlatform()
+
+    testLogging {
+        events "passed", "skipped", "failed", "standardOut", "standardError"
+        exceptionFormat = "full"
+        showStandardStreams = true
+    }
+
+    // Force scan for all files
+    scanForTestClasses = true
+}
+
+// Create a separate task for integration tests
+tasks.register('integrationTest', Test) {
+    description = 'Runs integration tests.'
+    group = 'verification'
+
+    useJUnitPlatform {
+        includeTags 'integration'
+    }
+
+    testLogging {
+        events 'passed', 'skipped', 'failed'
+    }
+
+    // Only run this task if explicitly called
+    onlyIf { project.hasProperty('runIntegrationTests') }
+}
+
+// Add integration tests to check task dependencies if requested
+if (project.hasProperty('runIntegrationTests')) {
+    check.dependsOn integrationTest
+}
+
+// Publishing configuration
+publishing {
+    repositories {
+        maven {
+            name = "InjectionLib"
+            url = "https://repo.ceymikey.dev/releases"
+            credentials(PasswordCredentials)
+            authentication {
+                basic(BasicAuthentication)
+            }
+        }
+    }
+    publications {
+        maven(MavenPublication) {
+            groupId = "dev.ceymikey"
+            artifactId = "injectionlib"
+            version = project.version
+            from components.java
+        }
+    }
 }
