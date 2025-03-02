@@ -20,6 +20,11 @@ import dev.ceymikey.injection.EmbedBuilder;
 
 /**
  * For now the main class just contains an example of the usage.
+<<<<<<< HEAD
+=======
+ *
+ * @author Ceymikey
+>>>>>>> 41c935fe528f3aed8fb34298b95a4e129f61583c
  */
 public class Main {
     public static void main(String[] args) {

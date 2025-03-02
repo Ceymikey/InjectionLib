@@ -70,8 +70,11 @@ public class TestClass {
 This will be the result of our code after calling the `testMethod` with 
 the correct webhook url.
 <img align="left" src="https://github.com/user-attachments/assets/2967b077-35b5-4c50-805e-3647364d0aee">
+<<<<<<< HEAD
 
 ### Thanks to contributors
 <a href="https://github.cSom/Ceymikey/InjectionLib/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=ceymikey/Injectionlib" />
 </a>
+=======
+>>>>>>> 41c935fe528f3aed8fb34298b95a4e129f61583c

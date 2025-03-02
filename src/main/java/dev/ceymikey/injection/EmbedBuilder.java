@@ -26,6 +26,11 @@ import java.util.List;
 
 /**
  * This class is used to build the embed.
+<<<<<<< HEAD
+=======
+ *
+ * @author Ceymikey
+>>>>>>> 41c935fe528f3aed8fb34298b95a4e129f61583c
  */
 @Getter
 public class EmbedBuilder {

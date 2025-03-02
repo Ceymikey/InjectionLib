@@ -1,7 +1,11 @@
 /*
+<<<<<<< HEAD
  * This file is part of InjectionLib, https://github.com/Ceymikey/InjectionLib
  *
  * Copyright (c) 2024-2025 Ceymikey. All Rights Reserved.
+=======
+ * Copyright 2025 svaningelgem. All Rights Reserved.
+>>>>>>> 41c935fe528f3aed8fb34298b95a4e129f61583c
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +30,11 @@ import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable;
 /**
  * Integration tests for the Discord webhook functionality.
  * These tests will only run if the DISCORD_WEBHOOK_URL environment variable is set.
+<<<<<<< HEAD
+=======
+ *
+ * @author svaningelgem
+>>>>>>> 41c935fe528f3aed8fb34298b95a4e129f61583c
  */
 @Tag("integration")
 class DiscordPayloadIntegrationTest {
