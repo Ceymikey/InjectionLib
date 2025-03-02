@@ -1,5 +1,7 @@
 /*
- * Copyright 2024 Ceymikey. All Rights Reserved.
+ * This file is part of InjectionLib, https://github.com/Ceymikey/InjectionLib
+ *
+ * Copyright (c) 2024-2025 Ceymikey. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,11 +22,6 @@ import dev.ceymikey.injection.EmbedBuilder;
 
 /**
  * For now the main class just contains an example of the usage.
-<<<<<<< HEAD
-=======
- *
- * @author Ceymikey
->>>>>>> 41c935fe528f3aed8fb34298b95a4e129f61583c
  */
 public class Main {
     public static void main(String[] args) {
