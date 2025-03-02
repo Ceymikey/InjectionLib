@@ -15,22 +15,20 @@
  */
 package dev.ceymikey;
 
-import dev.ceymikey.injection.EmbedBuilder;
 import dev.ceymikey.injection.DiscordPayload;
+import dev.ceymikey.injection.EmbedBuilder;
 
 /**
  * For now the main class just contains an example of the usage.
- * @author Ceymikey
  */
 public class Main {
     public static void main(String[] args) {
-        /* Use the EmbedBuilder class to build a new embed */
-        /* with the correct properties */
+        /* This builds the embeds data */
         EmbedBuilder builder = new EmbedBuilder.Construct()
-                .setUrl("WEBHOOK_URL")
+                .setUrl("EMBED_URL")
                 .setTitle("This is a test embed title!")
                 .setDescription("This is a test embed description!")
-                .setColor(12370112) // Gray color (RGB)
+                .setColor(12370112)
                 .setFooter("Small text at the bottom of the embed")
                 .build();
         /* This sends the actual embed */
