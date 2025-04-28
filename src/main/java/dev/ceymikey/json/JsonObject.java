@@ -1,7 +1,7 @@
 /*
  * This file is part of InjectionLib, https://github.com/Ceymikey/InjectionLib
  *
- * Copyright (c) 2024-2025 Ceymikey. All Rights Reserved.
+ * Copyright (c) 2025 svaningelgem. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
