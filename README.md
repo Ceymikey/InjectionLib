@@ -32,7 +32,7 @@ dependencies {
         <dependency>
             <groupId>dev.ceymikey</groupId>
             <artifactId>injectionlib</artifactId>
-            <version>{VERSION}</version>
+            <version>1.0.3</version>
         </dependency>
     </dependencies>
 
