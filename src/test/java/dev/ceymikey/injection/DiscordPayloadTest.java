@@ -130,7 +130,7 @@ class DiscordPayloadTest {
                 .setDescription("Test Description")
                 .setColor(12370112)
                 .addField("Field Name", "Field Value")
-                .setThumbnailUrl("https://example.com/thumbnail.png")
+                .setThumbnail("https://example.com/thumbnail.png")
                 .setFooter("Test Footer")
                 .build();
 

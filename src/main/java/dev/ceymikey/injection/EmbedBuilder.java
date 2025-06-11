@@ -36,6 +36,7 @@ public class EmbedBuilder {
     private final int color;
     private final List<Field> fields;
     private final String thumbnailUrl;
+    private final String imageUrl;
     private final String footerText;
     private final String footerIconUrl;
 
@@ -47,6 +48,7 @@ public class EmbedBuilder {
         this.color = construct.color;
         this.fields = construct.fields;
         this.thumbnailUrl = construct.thumbnailUrl;
+        this.imageUrl = construct.imageUrl;
         this.footerText = construct.footerText;
         this.footerIconUrl = construct.footerIconUrl;
     }
@@ -58,13 +60,9 @@ public class EmbedBuilder {
         private String description;
         private int color;
         private String thumbnailUrl;
+        private String imageUrl;
         private String footerText;
         private String footerIconUrl;
-
-        public Construct setThumbnailUrl(String thumbnailUrl) {
-            this.thumbnailUrl = thumbnailUrl;
-            return this;
-        }
 
         public Construct setUrl(String url) {
             this.url = url;
@@ -83,6 +81,16 @@ public class EmbedBuilder {
 
         public Construct setColor(int color) {
             this.color = color;
+            return this;
+        }
+
+        public Construct setThumbnail(String thumbnailUrl) {
+            this.thumbnailUrl = thumbnailUrl;
+            return this;
+        }
+
+        public Construct setImage(String imageUrl) {
+            this.imageUrl = imageUrl;
             return this;
         }
 
