@@ -30,6 +30,9 @@ import java.util.List;
 @Getter
 public class EmbedBuilder {
 
+    private final String authorName;
+    private final String authorUrl;
+    private final String authorIcon;
     private final String url;
     private final String title;
     private final String description;
@@ -42,6 +45,9 @@ public class EmbedBuilder {
 
     @Contract(pure = true)
     private EmbedBuilder(Construct construct) {
+        this.authorName = construct.authorName;
+        this.authorUrl = construct.authorUrl;
+        this.authorIcon = construct.authorIcon;
         this.url = construct.url;
         this.title = construct.title;
         this.description = construct.description;
@@ -55,6 +61,9 @@ public class EmbedBuilder {
 
     public static class Construct {
         private final List<Field> fields = new ArrayList<>();
+        private String authorName;
+        private String authorUrl;
+        private String authorIcon;
         private String url;
         private String title;
         private String description;
@@ -63,6 +72,24 @@ public class EmbedBuilder {
         private String imageUrl;
         private String footerText;
         private String footerIconUrl;
+
+        public Construct setAuthor(String authorName) {
+            this.authorName = authorName;
+            return this;
+        }
+
+        public Construct setAuthor(String authorName, String authorIcon) {
+            this.authorName = authorName;
+            this.authorIcon = authorIcon;
+            return this;
+        }
+
+        public Construct setAuthor(String authorName, String authorUrl, String authorIcon) {
+            this.authorName = authorName;
+            this.authorUrl = authorUrl;
+            this.authorIcon = authorIcon;
+            return this;
+        }
 
         public Construct setUrl(String url) {
             this.url = url;

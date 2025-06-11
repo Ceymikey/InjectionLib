@@ -95,6 +95,14 @@ public class DiscordPayload {
             embed.put("thumbnail", thumbnail);
         }
 
+        if (builder.getAuthorName() != null && !builder.getAuthorName().isEmpty()) {
+            JsonObject author = new JsonObject();
+            author.put("name", builder.getAuthorName());
+            if (builder.getAuthorUrl() != null) author.put("url", builder.getAuthorUrl());
+            if (builder.getAuthorIcon() != null) author.put("icon_url", builder.getAuthorIcon());
+            embed.put("author", author);
+        }
+
         JsonArray fieldsArray = new JsonArray();
         for (EmbedBuilder.Field field : builder.getFields()) {
             JsonObject fieldObject = new JsonObject();
