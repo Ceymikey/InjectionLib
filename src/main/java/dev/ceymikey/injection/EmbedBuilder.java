@@ -131,7 +131,8 @@ public class EmbedBuilder {
             return this;
         }
 
-        public Construct setFooterIcon(String footerIconUrl) {
+        public Construct setFooter(String footerText, String footerIconUrl) {
+            this.footerText = footerText;
             this.footerIconUrl = footerIconUrl;
             return this;
         }

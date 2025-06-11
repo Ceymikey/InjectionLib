@@ -29,6 +29,7 @@ public class Main {
         /* This builds the embeds data */
         EmbedBuilder builder = new EmbedBuilder.Construct()
                 .setUrl("EMBED_URL")
+                .setAuthor("Small text at the top of the embed")
                 .setTitle("This is a test embed title!")
                 .setDescription("This is a test embed description!")
                 .setColor(12370112)
