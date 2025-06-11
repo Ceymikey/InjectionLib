@@ -37,6 +37,7 @@ public class EmbedBuilder {
     private final List<Field> fields;
     private final String thumbnailUrl;
     private final String footerText;
+    private final String footerIconUrl;
 
     @Contract(pure = true)
     private EmbedBuilder(Construct construct) {
@@ -47,6 +48,7 @@ public class EmbedBuilder {
         this.fields = construct.fields;
         this.thumbnailUrl = construct.thumbnailUrl;
         this.footerText = construct.footerText;
+        this.footerIconUrl = construct.footerIconUrl;
     }
 
     public static class Construct {
@@ -57,6 +59,7 @@ public class EmbedBuilder {
         private int color;
         private String thumbnailUrl;
         private String footerText;
+        private String footerIconUrl;
 
         public Construct setThumbnailUrl(String thumbnailUrl) {
             this.thumbnailUrl = thumbnailUrl;
@@ -90,6 +93,11 @@ public class EmbedBuilder {
 
         public Construct setFooter(String footerText) {
             this.footerText = footerText;
+            return this;
+        }
+
+        public Construct setFooterIcon(String footerIconUrl) {
+            this.footerIconUrl = footerIconUrl;
             return this;
         }
 

@@ -108,6 +108,9 @@ public class DiscordPayload {
         if (builder.getFooterText() != null && !builder.getFooterText().isEmpty()) {
             JsonObject footer = new JsonObject();
             footer.put("text", builder.getFooterText());
+            if (builder.getFooterIconUrl() != null && !builder.getFooterIconUrl().isEmpty()) {
+                footer.put("icon_url", builder.getFooterIconUrl());
+            }
             embed.put("footer", footer);
         }
 
