@@ -19,6 +19,7 @@ package dev.ceymikey;
 
 import dev.ceymikey.injection.DiscordPayload;
 import dev.ceymikey.injection.EmbedBuilder;
+import dev.ceymikey.injection.MessageBuilder;
 
 /**
  * For now the main class just contains an example of the usage.
@@ -37,6 +38,9 @@ public class Main {
         /* This gives you the freedom to build the embed early */
         /* and send it later on in your code whenever you want */
         DiscordPayload.inject(builder);
+
+        /* This sends a plain message text */
+        MessageBuilder.sendPlain("EMBED_URL", "Cool message");
 
         System.out.println("Injection worked successfully!");
     }

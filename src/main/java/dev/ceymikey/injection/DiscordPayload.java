@@ -23,6 +23,8 @@ import dev.ceymikey.json.JsonArray;
 import dev.ceymikey.json.JsonObject;
 import org.jetbrains.annotations.NotNull;
 
+import javax.net.ssl.HttpsURLConnection;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -112,5 +114,23 @@ public class DiscordPayload {
         JsonObject payload = new JsonObject();
         payload.put("embeds", new JsonArray(embed));
         return payload;
+    }
+
+    public static void sendWebhook(String url, JsonObject payload) throws IOException {
+        URL webhookUrl = new URL(url);
+        HttpsURLConnection connection = (HttpsURLConnection) webhookUrl.openConnection();
+        connection.setRequestMethod("POST");
+        connection.setRequestProperty("Content-Type", "application/json");
+        connection.setDoOutput(true);
+
+        try (OutputStream os = connection.getOutputStream()) {
+            byte[] input = payload.toString().getBytes(StandardCharsets.UTF_8);
+            os.write(input, 0, input.length);
+        }
+
+        int responseCode = connection.getResponseCode();
+        if (responseCode >= 400) {
+            throw new IOException("Failed to send webhook: HTTP " + responseCode);
+        }
     }
 }
