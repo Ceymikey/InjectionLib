@@ -17,8 +17,8 @@
  */
 package dev.ceymikey.integration;
 
-import dev.ceymikey.injection.DiscordPayload;
-import dev.ceymikey.injection.EmbedBuilder;
+import dev.ceymikey.net.DiscordPayload;
+import dev.ceymikey.net.EmbedBuilder;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable;

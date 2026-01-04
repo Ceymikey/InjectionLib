@@ -16,11 +16,25 @@
  * limitations under the License.
  *
  */
-package dev.ceymikey.exceptions;
+package dev.ceymikey.payloads;
 
-public class InjectionFailureException extends RuntimeException {
+import dev.ceymikey.json.JsonObject;
+import lombok.Getter;
+import lombok.NonNull;
 
-    public InjectionFailureException() {
-        super("An issue occurred while injecting : content of the embed was empty");
+@Getter
+public class Message extends Payload {
+    private static String text;
+
+    public Message(@NonNull String text, @NonNull String url) {
+        super(url);
+        this.text = text;
+    }
+
+    @Override
+    public JsonObject serialize() {
+        JsonObject json = new JsonObject();
+        json.put("content", text);
+        return json;
     }
 }

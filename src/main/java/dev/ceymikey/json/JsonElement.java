@@ -1,5 +1,5 @@
 /*
- * This file is part of InjectionLib, https://github.com/Ceymikey/InjectionLib
+ * This file is part of discord-toolchain, https://github.com/Ceymikey/discord-toolchain
  *
  * Copyright (c) 2025 svaningelgem. All Rights Reserved.
  *
@@ -14,6 +14,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
  */
 package dev.ceymikey.json;
 
