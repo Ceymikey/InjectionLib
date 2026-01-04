@@ -19,17 +19,17 @@ repositories {
 
 dependencies {
     compileOnly 'org.jetbrains:annotations:26.0.2'
-    compileOnly 'org.projectlombok:lombok:1.18.36'
+    compileOnly 'org.projectlombok:lombok:1.18.42'
 
     annotationProcessor 'org.jetbrains:annotations:26.0.2'
-    annotationProcessor 'org.projectlombok:lombok:1.18.36'
+    annotationProcessor 'org.projectlombok:lombok:1.18.42'
 
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.11.4'
-    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.12.2'
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.4'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.14.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.14.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.14.1'
 
-    testImplementation 'org.mockito:mockito-core:5.18.0'
-    testImplementation 'org.mockito:mockito-junit-jupiter:3.12.4'
+    testImplementation 'org.mockito:mockito-core:5.21.0'
+    testImplementation 'org.mockito:mockito-junit-jupiter:5.21.0'
     testImplementation 'org.mockito:mockito-inline:5.2.0'
 }
 
@@ -74,7 +74,7 @@ if (project.hasProperty('runIntegrationTests')) {
 publishing {
     repositories {
         maven {
-            name = "Discord Toolchain"
+            name = "Discord-Toolchain"
             url = "https://repo.ceymikey.dev/releases"
             credentials(PasswordCredentials)
             authentication {
