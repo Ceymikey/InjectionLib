@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'dev.ceymikey'
-version = '1.0.4'
+version = '1.0.0'
 
 java {
     toolchain {
@@ -70,10 +70,11 @@ if (project.hasProperty('runIntegrationTests')) {
 }
 
 // Publishing configuration
+// SKIPPED FOR NOW SINCE MY SERVICE IS OFFLINE
 publishing {
     repositories {
         maven {
-            name = "InjectionLib"
+            name = "Discord Toolchain"
             url = "https://repo.ceymikey.dev/releases"
             credentials(PasswordCredentials)
             authentication {
@@ -84,7 +85,7 @@ publishing {
     publications {
         maven(MavenPublication) {
             groupId = "dev.ceymikey"
-            artifactId = "injectionlib"
+            artifactId = "discord-toolchain"
             version = project.version
             from components.java
         }

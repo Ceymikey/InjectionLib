@@ -24,11 +24,11 @@ How to add the library to your project. Its available for both maven and gradle
 #### Gradle implementation
 ```gradle
 repositories {
-    maven { url "https://repo.ceymikey.dev/releases" }
+    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
-    implementation "dev.ceymikey:injectionlib:{VERSION}"
+    implementation 'com.github.Ceymikey:discord-toolchain:{LATEST_VERSION}'
 }
 ```
 #### Maven implementation
@@ -38,15 +38,15 @@ dependencies {
     <repositories>
         <repository>
             <id>ceymikey-releases</id>
-            <url>https://repo.ceymikey.dev/releases</url>
+            <url>https://jitpack.io</url>
         </repository>
     </repositories>
     
     <dependencies>
         <dependency>
-            <groupId>dev.ceymikey</groupId>
-            <artifactId>injectionlib</artifactId>
-            <version>1.0.3</version>
+            <groupId>com.github.Ceymikey</groupId>
+            <artifactId>discord-toolchain</artifactId>
+            <version>LATEST_VERSION</version>
         </dependency>
     </dependencies>
 
