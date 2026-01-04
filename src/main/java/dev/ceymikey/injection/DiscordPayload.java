@@ -108,6 +108,7 @@ public class DiscordPayload {
             JsonObject fieldObject = new JsonObject();
             fieldObject.put("name", field.name);
             fieldObject.put("value", field.value);
+            fieldObject.put("inline", field.inline);
             fieldsArray.put(fieldObject);
         }
         embed.put("fields", fieldsArray);

@@ -31,6 +31,8 @@ public class Main {
                 .setUrl("EMBED_URL")
                 .setAuthor("Small text at the top of the embed")
                 .setTitle("This is a test embed title!")
+                .addField("33", "3", false)
+                .addField("33", "3", true)
                 .setDescription("This is a test embed description!")
                 .setColor(12370112)
                 .setFooter("Small text at the bottom of the embed")

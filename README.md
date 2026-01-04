@@ -5,6 +5,10 @@
 
 # Discord webhooks java
 
+> [!WARNING]
+> This project is still in development and may be missing some key features.
+> All other features should work.
+
 ### Implementing
 How to add the library to your project. Its available for both maven and gradle
 #### Gradle implementation

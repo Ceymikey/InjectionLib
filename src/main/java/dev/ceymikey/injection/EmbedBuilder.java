@@ -19,6 +19,7 @@ package dev.ceymikey.injection;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NonNull;
 import org.jetbrains.annotations.Contract;
 
 import java.util.ArrayList;
@@ -121,8 +122,8 @@ public class EmbedBuilder {
             return this;
         }
 
-        public Construct addField(String name, String value) {
-            this.fields.add(new Field(name, value));
+        public Construct addField(@NonNull String name, @NonNull String value, boolean inline) {
+            this.fields.add(new Field(name, value, inline));
             return this;
         }
 
@@ -146,5 +147,6 @@ public class EmbedBuilder {
     public static class Field {
         public String name;
         public String value;
+        public boolean inline;
     }
 }
