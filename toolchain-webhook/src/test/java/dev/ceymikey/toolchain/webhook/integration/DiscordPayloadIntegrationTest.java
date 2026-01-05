@@ -16,9 +16,9 @@
  * limitations under the License.
  *
  */
-package dev.ceymikey.toolchain.rpc.integration;
+package dev.ceymikey.toolchain.webhook.integration;
 
-import dev.ceymikey.toolchain.rpc.net.DiscordPayload;
+import dev.ceymikey.toolchain.webhook.net.DiscordPayload;
 import dev.ceymikey.net.EmbedBuilder;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;

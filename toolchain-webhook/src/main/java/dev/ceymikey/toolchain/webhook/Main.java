@@ -16,11 +16,11 @@
  * limitations under the License.
  *
  */
-package dev.ceymikey.toolchain.rpc;
+package dev.ceymikey.toolchain.webhook;
 
-import dev.ceymikey.toolchain.rpc.payloads.Message;
-import dev.ceymikey.toolchain.rpc.net.DiscordPayload;
-import dev.ceymikey.toolchain.rpc.payloads.Embed;
+import dev.ceymikey.toolchain.webhook.payloads.Message;
+import dev.ceymikey.toolchain.webhook.net.DiscordPayload;
+import dev.ceymikey.toolchain.webhook.payloads.Embed;
 
 /**
  * For now the main class just contains an example of the usage.

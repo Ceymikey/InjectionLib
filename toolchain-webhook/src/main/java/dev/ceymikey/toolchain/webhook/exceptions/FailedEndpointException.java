@@ -16,29 +16,11 @@
  * limitations under the License.
  *
  */
-package dev.ceymikey.toolchain.rpc.json;
+package dev.ceymikey.toolchain.webhook.exceptions;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+public class FailedEndpointException extends RuntimeException {
 
-/**
- * Simple JSON array builder
- */
-public class JsonArray extends JsonElement {
-    private final List<Object> items = new ArrayList<>();
-
-    public JsonArray(Object... items) {
-        this.items.addAll(Arrays.asList(items));
-    }
-
-    public JsonArray put(Object value) {
-        this.items.add(value);
-        return this;
-    }
-
-    @Override
-    public String toString() {
-        return serializeArray(items);
+    public FailedEndpointException() {
+        super("An issue occurred while finding endpoint : the embed url was either left empty or was invalid!");
     }
 }

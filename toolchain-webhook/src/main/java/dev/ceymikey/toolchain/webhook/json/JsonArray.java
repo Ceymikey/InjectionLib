@@ -16,11 +16,29 @@
  * limitations under the License.
  *
  */
-package dev.ceymikey.toolchain.rpc.exceptions;
+package dev.ceymikey.toolchain.webhook.json;
 
-public class InjectionFailureException extends RuntimeException {
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-    public InjectionFailureException() {
-        super("An issue occurred while injecting : content of the embed was empty");
+/**
+ * Simple JSON array builder
+ */
+public class JsonArray extends JsonElement {
+    private final List<Object> items = new ArrayList<>();
+
+    public JsonArray(Object... items) {
+        this.items.addAll(Arrays.asList(items));
+    }
+
+    public JsonArray put(Object value) {
+        this.items.add(value);
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return serializeArray(items);
     }
 }

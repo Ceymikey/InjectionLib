@@ -16,7 +16,7 @@
  * limitations under the License.
  *
  */
-package dev.ceymikey.toolchain.rpc.json;
+package dev.ceymikey.toolchain.webhook.json;
 
 import org.junit.jupiter.api.Test;
 

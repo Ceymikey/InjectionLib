@@ -16,11 +16,25 @@
  * limitations under the License.
  *
  */
-package dev.ceymikey.toolchain.rpc.exceptions;
+package dev.ceymikey.toolchain.webhook.json;
 
-public class FailedEndpointException extends RuntimeException {
+import java.util.LinkedHashMap;
+import java.util.Map;
 
-    public FailedEndpointException() {
-        super("An issue occurred while finding endpoint : the embed url was either left empty or was invalid!");
+/**
+ * Simple JSON object builder
+ */
+public class JsonObject extends JsonElement {
+    private final Map<String, Object> data = new LinkedHashMap<>();
+
+    public JsonObject put(String key, Object value) {
+        this.data.put(key, value);
+        return this;
     }
+
+    @Override
+    public String toString() {
+        return serializeObject(this.data);
+    }
+
 }

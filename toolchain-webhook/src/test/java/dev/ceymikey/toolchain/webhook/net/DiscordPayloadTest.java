@@ -16,10 +16,10 @@
  * limitations under the License.
  *
  */
-package dev.ceymikey.toolchain.rpc.net;
+package dev.ceymikey.toolchain.webhook.net;
 
-import dev.ceymikey.toolchain.rpc.exceptions.FailedEndpointException;
-import dev.ceymikey.toolchain.rpc.exceptions.InjectionFailureException;
+import dev.ceymikey.toolchain.webhook.exceptions.FailedEndpointException;
+import dev.ceymikey.toolchain.webhook.exceptions.InjectionFailureException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -84,7 +84,7 @@ class DiscordPayloadTest {
     void setUp() {
         // Ensure JsonObject class is loaded
         try {
-            Class.forName("dev.ceymikey.toolchain.rpc.json.JsonObject");
+            Class.forName("dev.ceymikey.toolchain.webhook.json.JsonObject");
         } catch (ClassNotFoundException e) {
             fail("JsonObject class not found: " + e.getMessage());
         }

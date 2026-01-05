@@ -16,25 +16,31 @@
  * limitations under the License.
  *
  */
-package dev.ceymikey.toolchain.rpc.payloads;
+package dev.ceymikey.toolchain.webhook.payloads;
 
-import dev.ceymikey.toolchain.rpc.json.JsonObject;
+import dev.ceymikey.toolchain.webhook.json.JsonObject;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NonNull;
 
+/**
+ * The payload class is an abstract class that
+ * represents any type of discord part that can be serialized
+ * and sent in the stream like for example: embeds, polls, messages etc
+ */
 @Getter
-public class Message extends Payload {
-    private static String text;
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
+public abstract class Payload {
+    /**
+     * The destination URL of the webhook
+     * you want to sent the payload to.
+     */
+    private final String url;
 
-    public Message(@NonNull String text, @NonNull String url) {
-        super(url);
-        this.text = text;
-    }
-
-    @Override
-    public JsonObject serialize() {
-        JsonObject json = new JsonObject();
-        json.put("content", text);
-        return json;
-    }
+    /**
+     * The serialize method contains the logic
+     * to turn the part data into json making it ready
+     * to be sent to the discord API.
+     */
+    public abstract JsonObject serialize();
 }

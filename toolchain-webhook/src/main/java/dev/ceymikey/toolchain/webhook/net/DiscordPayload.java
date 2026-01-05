@@ -16,10 +16,10 @@
  * limitations under the License.
  *
  */
-package dev.ceymikey.toolchain.rpc.net;
+package dev.ceymikey.toolchain.webhook.net;
 
-import dev.ceymikey.toolchain.rpc.json.JsonObject;
-import dev.ceymikey.toolchain.rpc.payloads.Payload;
+import dev.ceymikey.toolchain.webhook.json.JsonObject;
+import dev.ceymikey.toolchain.webhook.payloads.Payload;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;

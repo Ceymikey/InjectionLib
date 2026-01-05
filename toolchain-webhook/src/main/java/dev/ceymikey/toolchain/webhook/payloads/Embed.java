@@ -16,12 +16,12 @@
  * limitations under the License.
  *
  */
-package dev.ceymikey.toolchain.rpc.payloads;
+package dev.ceymikey.toolchain.webhook.payloads;
 
-import dev.ceymikey.toolchain.rpc.exceptions.FailedEndpointException;
-import dev.ceymikey.toolchain.rpc.exceptions.InjectionFailureException;
-import dev.ceymikey.toolchain.rpc.json.JsonArray;
-import dev.ceymikey.toolchain.rpc.json.JsonObject;
+import dev.ceymikey.toolchain.webhook.exceptions.FailedEndpointException;
+import dev.ceymikey.toolchain.webhook.exceptions.InjectionFailureException;
+import dev.ceymikey.toolchain.webhook.json.JsonArray;
+import dev.ceymikey.toolchain.webhook.json.JsonObject;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NonNull;
