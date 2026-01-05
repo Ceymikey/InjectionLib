@@ -1,7 +1,7 @@
 /*
  * This file is part of discord-toolchain, https://github.com/Ceymikey/discord-toolchain
  *
- * Copyright (c) 2024-2026 Ceymikey and contributors. All Rights Reserved.
+ * Copyright (c) 2025 svaningelgem. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@
 package dev.ceymikey.toolchain.webhook.integration;
 
 import dev.ceymikey.toolchain.webhook.net.DiscordPayload;
-import dev.ceymikey.net.EmbedBuilder;
+import dev.ceymikey.toolchain.webhook.payloads.Embed;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable;
@@ -38,13 +38,13 @@ class DiscordPayloadIntegrationTest {
         String webhookUrl = System.getenv("DISCORD_WEBHOOK_URL");
 
         // Create a test embed
-        EmbedBuilder embed = new EmbedBuilder.Construct()
+        Embed embed = new Embed.Construct()
                 .setUrl(webhookUrl)
                 .setTitle("Integration Test")
                 .setDescription("This is an automated test of the Discord webhook integration.")
                 .setColor(3447003) // Discord blue color
-                .addField("Test Field", "This is a test field")
-                .addField("Build", "Gradle Build " + System.currentTimeMillis())
+                .addField("Test Field", "This is a test field", true)
+                .addField("Build", "Gradle Build " + System.currentTimeMillis(), true)
                 .setFooter("Test completed at " + java.time.LocalDateTime.now())
                 .build();
 

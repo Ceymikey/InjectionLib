@@ -1,7 +1,7 @@
 /*
  * This file is part of discord-toolchain, https://github.com/Ceymikey/discord-toolchain
  *
- * Copyright (c) 2024-2026 Ceymikey and contributors. All Rights Reserved.
+ * Copyright (c) 2025 svaningelgem. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.

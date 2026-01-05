@@ -1,7 +1,7 @@
 /*
  * This file is part of discord-toolchain, https://github.com/Ceymikey/discord-toolchain
  *
- * Copyright (c) 2024-2026 Ceymikey and contributors. All Rights Reserved.
+ * Copyright (c) 2025 svaningelgem. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ package dev.ceymikey.toolchain.webhook.net;
 
 import dev.ceymikey.toolchain.webhook.exceptions.FailedEndpointException;
 import dev.ceymikey.toolchain.webhook.exceptions.InjectionFailureException;
+import dev.ceymikey.toolchain.webhook.payloads.Embed;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -93,7 +94,7 @@ class DiscordPayloadTest {
     @Test
     void testFailedEndpoint() {
         // Create builder with empty URL
-        EmbedBuilder builder = new EmbedBuilder.Construct()
+        Embed builder = new Embed.Construct()
                 .setUrl("")
                 .setTitle("Test Title")
                 .setDescription("Test Description")
@@ -110,7 +111,7 @@ class DiscordPayloadTest {
     @Test
     void testEmptyContent() {
         // Create builder with URL but empty content
-        EmbedBuilder builder = new EmbedBuilder.Construct()
+        Embed builder = new Embed.Construct()
                 .setUrl("https://discord.com/api/webhooks/example")
                 .build();
 
@@ -125,12 +126,12 @@ class DiscordPayloadTest {
     @Test
     void testSuccessfulInjection() throws Exception {
         // Create a complete builder
-        EmbedBuilder builder = new EmbedBuilder.Construct()
+        Embed builder = new Embed.Construct()
                 .setUrl("https://discord.com/api/webhooks/example")
                 .setTitle("Test Title")
                 .setDescription("Test Description")
                 .setColor(12370112)
-                .addField("Field Name", "Field Value")
+                .addField("Field Name", "Field Value", false)
                 .setThumbnail("https://example.com/thumbnail.png")
                 .setFooter("Test Footer")
                 .build();
@@ -187,7 +188,7 @@ class DiscordPayloadTest {
     @Test
     void testHttpErrorHandling() throws Exception {
         // Create a complete builder
-        EmbedBuilder builder = new EmbedBuilder.Construct()
+        Embed builder = new Embed.Construct()
                 .setUrl("https://discord.com/api/webhooks/example")
                 .setTitle("Test Title")
                 .build();
@@ -211,7 +212,7 @@ class DiscordPayloadTest {
     @Test
     void testExceptionHandling() throws Exception {
         // Create a complete builder
-        EmbedBuilder builder = new EmbedBuilder.Construct()
+        Embed builder = new Embed.Construct()
                 .setUrl("https://discord.com/api/webhooks/example")
                 .setTitle("Test Title")
                 .build();
