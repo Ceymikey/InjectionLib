@@ -5,6 +5,7 @@ plugins {
 
 subprojects {
     apply plugin: 'java'
+    apply plugin: 'maven-publish'
 
     group = 'dev.ceymikey'
     version = '1.0.0'
