@@ -3,91 +3,95 @@ plugins {
     id 'maven-publish'
 }
 
-group = 'dev.ceymikey'
-version = '1.0.0'
+allprojects {
+    apply plugin: 'java'
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(8)
-    }
-}
+    group = 'dev.ceymikey'
+    version = '1.0.0'
 
-repositories {
-    mavenCentral()
-    mavenLocal()
-}
-
-dependencies {
-    compileOnly 'org.jetbrains:annotations:26.0.2'
-    compileOnly 'org.projectlombok:lombok:1.18.42'
-
-    annotationProcessor 'org.jetbrains:annotations:26.0.2'
-    annotationProcessor 'org.projectlombok:lombok:1.18.42'
-
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.14.1'
-    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.14.1'
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.14.1'
-
-    testImplementation 'org.mockito:mockito-core:5.21.0'
-    testImplementation 'org.mockito:mockito-junit-jupiter:5.21.0'
-    testImplementation 'org.mockito:mockito-inline:5.2.0'
-}
-
-// Configure test task
-test {
-    useJUnitPlatform()
-
-    testLogging {
-        events "passed", "skipped", "failed", "standardOut", "standardError"
-        exceptionFormat = "full"
-        showStandardStreams = true
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(8)
+        }
     }
 
-    // Force scan for all files
-    scanForTestClasses = true
-}
+    repositories {
+        mavenCentral()
+        mavenLocal()
+    }
+
+    dependencies {
+        compileOnly 'org.jetbrains:annotations:26.0.2'
+        compileOnly 'org.projectlombok:lombok:1.18.42'
+
+        annotationProcessor 'org.jetbrains:annotations:26.0.2'
+        annotationProcessor 'org.projectlombok:lombok:1.18.42'
+
+        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.14.1'
+        testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.14.1'
+        testImplementation 'org.junit.jupiter:junit-jupiter:5.14.1'
+
+        testImplementation 'org.mockito:mockito-core:5.21.0'
+        testImplementation 'org.mockito:mockito-junit-jupiter:5.21.0'
+        testImplementation 'org.mockito:mockito-inline:5.2.0'
+    }
+
+    // Configure test task
+    test {
+        useJUnitPlatform()
+
+        testLogging {
+            events "passed", "skipped", "failed", "standardOut", "standardError"
+            exceptionFormat = "full"
+            showStandardStreams = true
+        }
+
+        // Force scan for all files
+        scanForTestClasses = true
+    }
 
 // Create a separate task for integration tests
-tasks.register('integrationTest', Test) {
-    description = 'Runs integration tests.'
-    group = 'verification'
+    tasks.register('integrationTest', Test) {
+        description = 'Runs integration tests.'
+        group = 'verification'
 
-    useJUnitPlatform {
-        includeTags 'integration'
+        useJUnitPlatform {
+            includeTags 'integration'
+        }
+
+        testLogging {
+            events 'passed', 'skipped', 'failed'
+        }
+
+        // Only run this task if explicitly called
+        onlyIf { project.hasProperty('runIntegrationTests') }
     }
-
-    testLogging {
-        events 'passed', 'skipped', 'failed'
-    }
-
-    // Only run this task if explicitly called
-    onlyIf { project.hasProperty('runIntegrationTests') }
-}
 
 // Add integration tests to check task dependencies if requested
-if (project.hasProperty('runIntegrationTests')) {
-    check.dependsOn integrationTest
+    if (project.hasProperty('runIntegrationTests')) {
+        check.dependsOn integrationTest
+    }
 }
 
 // Publishing configuration
 // SKIPPED FOR NOW SINCE MY SERVICE IS OFFLINE
-publishing {
-    repositories {
-        maven {
-            name = "Discord-Toolchain"
-            url = "https://repo.ceymikey.dev/releases"
-            credentials(PasswordCredentials)
-            authentication {
-                basic(BasicAuthentication)
-            }
-        }
-    }
-    publications {
-        maven(MavenPublication) {
-            groupId = "dev.ceymikey"
-            artifactId = "discord-toolchain"
-            version = project.version
-            from components.java
-        }
-    }
-}
+//publishing {
+//    repositories {
+//        maven {
+//            name = "Discord-Toolchain"
+//            url = "https://repo.ceymikey.dev/releases"
+//            credentials(PasswordCredentials)
+//            authentication {
+//                basic(BasicAuthentication)
+//            }
+//        }
+//    }
+//    publications {
+//        maven(MavenPublication) {
+//            groupId = "dev.ceymikey"
+//            artifactId = "discord-toolchain"
+//            version = project.version
+//            from components.java
+//        }
+//    }
+//}
